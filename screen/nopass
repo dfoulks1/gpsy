@@ -1,0 +1,54 @@
+startup_message off
+vbell off
+defscrollback 10000
+# No Password Screen configuration
+#
+# New Tab - F1
+bindkey -k k1 screen
+
+# Previous Tab - F2
+bindkey -k k2 prev
+
+# Next Tab - F3
+bindkey -k k3 next
+
+# Kill Current Tab - F4
+bindkey -k k4 kill
+
+# Start logging to file - F5
+bindkey -k k5 log
+
+# Dump current to file - F6
+bindkey -k k6 hardcopy
+
+# Split screen - F7
+bindkey -k k7 split
+
+# Unsplit screen - F8
+bindkey -k k8 only
+
+# Enter Copy / Scrollback mode - F9
+#    - Use space to start / end selection
+bindkey -k k9 copy
+
+# Detach from this screen session - F10
+bindkey -k k detach
+
+# Paste - F11
+bindkey -k F1 paste .
+
+# Quit Screen - F12
+bindkey -k F2 quit
+
+# Allow Auth Agent forwarding
+setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+
+hardstatus	alwayslastline
+
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KR} nopass %{KW}|%C%A %D %M %Y '
+
+# Hide tabs: ctrl-a + f
+bind f eval "hardstatus ignore"
+
+# Show tabs: ctrl-a + F
+bind F eval "hardstatus alwayslastline"
