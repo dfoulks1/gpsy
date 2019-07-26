@@ -3,14 +3,7 @@
 the GNU Screen Manager is a wrapper that manages multiple .screenrc files.
 
 ## Setting Up
-1. Link the screen_manager/screen directory to ~/.screen
-2. Add the following lines to your .bashrc:
-  - source ~/.screen/scr_function.sh
-  - if test "$SSH_AUTH_SOCK" ; then
-      ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
-    fi
-3. Source the updated ~/.bashrc file
-
+run the setup.sh script included in the root of the repository
 'scr' should now be ready to use
 
 ## Usage Notes
@@ -45,5 +38,3 @@ Open the screenrc file you wish to secure and add the following
 password 
 
 on the same line as password ctrl + A, ctrl + ]
-
- 

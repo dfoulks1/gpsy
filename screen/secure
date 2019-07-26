@@ -41,7 +41,7 @@ bindkey -k F1 paste .
 # Quit Screen - F12
 bindkey -k F2 quit
 
-# Allow Auth Agent forwarding
+# Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
 hardstatus	alwayslastline
