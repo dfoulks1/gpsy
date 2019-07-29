@@ -2,7 +2,9 @@ startup_message off
 vbell off
 defscrollback 10000
 # Password Protected Screen configuration
-password FYADPxu6eLi4o
+#
+# Uncomment the following line and use super + F11 OR ctrl+a; ctrl+] to paste from the buffer
+# password 
 #
 # New Tab - F1
 bindkey -k k1 screen
@@ -46,7 +48,7 @@ setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
 hardstatus	alwayslastline
 
-hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KR} nopass %{KW}|%C%A %D %M %Y '
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KY} secure %{KW}|%C%A %D %M %Y '
 
 # Hide tabs: ctrl-a + f
 bind f eval "hardstatus ignore"
