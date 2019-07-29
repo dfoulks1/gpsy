@@ -54,6 +54,9 @@ function scr () {
 		list)
 			listall
 			;;
+		clean)
+			killscr
+			;;
 		*)
 			if [ -e $SCREENDIR/default ]; then
 				$SCREEN -S $USER"_default" -c $SCREENDIR/default
@@ -98,10 +101,9 @@ function contains () {
 }
 
 function listall () {
-	default=`ls -l ~/.screen/$(ls -AF $SCREENDIR | grep default@ | sed -e 's/@//' | awk '{print $NF}')`
-
+	default=`ls -al | grep default | awk -F/ '{print $NF}'`
 	for x in `grep -B1 '\s\$SCREEN -S' $SCREENDIR/scr_function.sh | grep ')' | sed -e 's/)//' -e 's/^\s\+//'`; do
-		if [[ $x == $default ]]; then
+		if [[ "$x" == "$default" ]]; then
 			echo "$x -- default"
 		else
 			echo $x
