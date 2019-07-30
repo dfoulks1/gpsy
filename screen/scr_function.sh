@@ -18,6 +18,12 @@ function scr () {
 		secure)
 			$SCREEN -S $name -c $SCREENDIR/$file
 			;;
+		sftp)
+			$SCREEN -S $name -c $SCREENDIR/$file
+			;;
+		extra)
+			$SCREEN -S $name -c $SCREENDIR/$file
+			;;
 		nopass)
 			$SCREEN -S $name -c $SCREENDIR/$file
 			;;
@@ -29,7 +35,7 @@ function scr () {
 			;;
 		help)
 			if [ $2 ]; then
-				grep "^#" $SCREENDIR/$2
+				grep "^##" $SCREENDIR/$2 | sed -e 's/^##/#/'
 			else
 				printhelp
 			fi
@@ -73,7 +79,8 @@ function addscr () {
 
 	file=$SCREENDIR/$name
 	if [ -e $file ]; then
-		sed -i " 24 \\\t\t$1\n\t\t\t$SCREEN -S \$USER -c \$SCREENDIR/\$file\n\t\t\t;;" $SCREENDIR/scr_function.sh
+		newstring="\\\t\t$name\)\n\t\t\t\$SCREEN \-S \$name \-c \$SCREENDIR\/\$file\n\t\t\t;;"
+		sed -i "24i $newstring" $SCREENDIR/scr_function.sh
 	else
 		echo "Supplied configuration not found"
 		exit 1
@@ -101,8 +108,9 @@ function contains () {
 }
 
 function listall () {
-	default=`ls -al | grep default | awk -F/ '{print $NF}'`
-	for x in `grep -B1 '\s\$SCREEN -S' $SCREENDIR/scr_function.sh | grep ')' | sed -e 's/)//' -e 's/^\s\+//'`; do
+	echo "available screens:"
+	default=`ls -al $SCREENDIR | grep default | awk -F/ '{print $NF}' | sed -e 's/\n//'`
+	for x in `grep -B1 '\$SCREEN -S \$name -c \$SCREENDIR/\$file' $SCREENDIR/scr_function.sh | grep \) | sed -e "s/)//" -e "s/^\s\+//"`; do
 		if [[ "$x" == "$default" ]]; then
 			echo "$x -- default"
 		else

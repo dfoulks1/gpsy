@@ -1,8 +1,11 @@
 startup_message off
 vbell off
 defscrollback 10000
-## No Password Screen configuration
-##
+## Password Protected SFTP Tagged Screen configuration
+#
+# Uncomment the following line and use super + F11 OR ctrl+a; ctrl+] to paste from the buffer
+# password 
+#
 ## New Tab - F1
 bindkey -k k1 screen
 
@@ -15,21 +18,14 @@ bindkey -k k3 next
 ## Kill Current Tab - F4
 bindkey -k k4 kill
 
-## Start logging to file - F5
-bindkey -k k5 log
+## Force split
+split
 
-## Dump current to file - F6
-bindkey -k k6 hardcopy
+## Next zone
+bindkey -k k5 focus next
 
-## Split screen - F7
-bindkey -k k7 split
-
-## Unsplit screen - F8
-bindkey -k k8 only
-
-## Enter Copy / Scrollback mode - F9
-##    - Use space to start / end selection
-bindkey -k k9 copy
+## Previous zone
+bindkey -k k6 focus prev
 
 ## Detach from this screen session - F10
 bindkey -k k detach
@@ -40,12 +36,12 @@ bindkey -k F1 paste .
 ## Quit Screen - F12
 bindkey -k F2 quit
 
-## Allow Auth Agent forwarding
+## Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
 hardstatus	alwayslastline
 
-hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KR} nopass %{KW}|%C%A %D %M %Y '
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KY} secure %{KW}|%C%A %D %M %Y '
 
 ## Hide tabs: ctrl-a + f
 bind f eval "hardstatus ignore"

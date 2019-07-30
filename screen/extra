@@ -1,11 +1,12 @@
 startup_message off
 vbell off
-defscrollback 10000
 ## Password Protected Screen configuration
-#
+##
 # Uncomment the following line and use super + F11 OR ctrl+a; ctrl+] to paste from the buffer
 # password 
 #
+## Tab Management
+##
 ## New Tab - F1
 bindkey -k k1 screen
 
@@ -18,40 +19,61 @@ bindkey -k k3 next
 ## Kill Current Tab - F4
 bindkey -k k4 kill
 
+##
+## Manage Screen logging
+##
 ## Start logging to file - F5
 bindkey -k k5 log
 
 ## Dump current to file - F6
 bindkey -k k6 hardcopy
 
+##
+## Screen splitting controls
+##
 ## Split screen - F7
 bindkey -k k7 split
+
+## Previous split focus - Home
+bindkey -k kh focus next
+
+## Next split focus - End
+bindkey -k kH focus prev
 
 ## Unsplit screen - F8
 bindkey -k k8 only
 
+## Scroll back + Copy and Paste
+## scrollback set to: 10000 lines
+##
+defscrollback 10000
 ## Enter Copy / Scrollback mode - F9
 ##    - Use space to start / end selection
 bindkey -k k9 copy
 
-## Detach from this screen session - F10
-bindkey -k k detach
+## Paste copy buffer - F10
+bindkey -k k paste .
 
-## Paste - F11
-bindkey -k F1 paste .
+##
+## Disconnecting and Exiting
+##
+## Detach from the current session - F11
+bindkey -k F1 detach
 
-## Quit Screen - F12
+# Close tabs and quit Screen - F12
 bindkey -k F2 quit
 
-## Allow SSH Agent forwarding
+# Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
+# Hardstatus is always last line
 hardstatus	alwayslastline
 
+# Friendly Menu bar
 hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KY} secure %{KW}|%C%A %D %M %Y '
 
-## Hide tabs: ctrl-a + f
+# Hide tabs: ctrl-a + f
 bind f eval "hardstatus ignore"
 
-## Show tabs: ctrl-a + F
+# Show tabs: ctrl-a + F
 bind F eval "hardstatus alwayslastline"
