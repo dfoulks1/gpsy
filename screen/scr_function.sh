@@ -28,10 +28,10 @@ function scr () {
 			$SCREEN -S $name -c $SCREENDIR/$file
 			;;
 		add)
-			addscr $2
+			_addscr $2
 			;;
 		del)
-			delscr $2
+			_delscr $2
 			;;
 		help)
 			if [ $2 ]; then
@@ -58,10 +58,19 @@ function scr () {
 			fi
 			;;
 		list)
-			listall
+			_listall
 			;;
 		clean)
-			killscr
+			_killscr
+			;;
+		kill)
+			_killscr $2
+			;;
+		show)
+			$SCREEN -ls
+			;;
+		join)
+			$SCREEN -x $2
 			;;
 		*)
 			if [ -e $SCREENDIR/default ]; then
@@ -73,7 +82,7 @@ function scr () {
 	esac
 }
 
-function addscr () {
+function _addscr () {
 	name=$1
 	if [ -z $name ]; then echo "No configuration supplied" && exit 1; fi
 
@@ -89,10 +98,10 @@ function addscr () {
 	source ~/.bashrc
 }
 
-function delscr () {
+function _delscr () {
 	name=$1
 	if [ -z $1 ]; then echo "No configuration supplied" && exit 1; fi
-	var=$(contains $1)
+	var=$(_contains $1)
 	if ["$var" != "0" ]; then
 	       sed -i '/$1/+2d'	$SCREENDIR/scr_function.sh
 	else
@@ -101,13 +110,13 @@ function delscr () {
 	fi
 }
 
-function contains () {
+function _contains () {
 	permargs="add del help secure nopass"
 	[[ $permargs =~ (^|[[:space:]])"$1"($|[[:space:]]) ]] && echo 0 | echo 1
 	return $var
 }
 
-function listall () {
+function _listall () {
 	echo "available screens:"
 	default=`ls -al $SCREENDIR | grep default | awk -F/ '{print $NF}' | sed -e 's/\n//'`
 	for x in `grep -B1 '\$SCREEN -S \$name -c \$SCREENDIR/\$file' $SCREENDIR/scr_function.sh | grep \) | sed -e "s/)//" -e "s/^\s\+//"`; do
@@ -119,9 +128,9 @@ function listall () {
 	done
 }
 
-function killscr () {
+function _killscr () {
 	if [ $1 ]; then
-		$SCREEN kill $($SCREEN -ls | grep '\b$1\b' | awk -F'.' '{print $1}' | sed -e 's/^\s\+//')
+		$SCREEN kill $1
 	else
 		for x in `$SCREEN -ls | grep '\.' | grep -v '\.$'`; do
 			$SCREEN kill $(echo $x | awk -F'.' '{print $1}' | grep -vi det)
@@ -181,12 +190,9 @@ function printhelp() {
 		
 		Cleaning up old screen sessions:
 
-			killscr
-
-			NOTE: Kills all screen sessions whether attached or unatached
-			killscr <session name>
-
-			NOTE: Kills the specified screen session
+			scr clean
+			
+			NOTE: Kills the all local screen session
 
 	Useful scr commands
 		Listing open screen sessions:
