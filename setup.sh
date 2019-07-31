@@ -18,7 +18,7 @@ echo "source ~/.screen/scr_function.sh" >> $HOME/.bashrc
 
 # Allow ssh agent forwarding through screen tabs
 echo "Enabling SSH agent forwarding."
-echo -e "if test \"$SSH_AUTH_SOCK\" ; then\n    ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock\nfi" >> $HOME/.ssh/rc
+echo -e "if test \"\$SSH_AUTH_SOCK\" ; then\n    ln -sf \$SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock\nfi" >> $HOME/.ssh/rc
 
 # Be done!
 echo "scr is now configured."
