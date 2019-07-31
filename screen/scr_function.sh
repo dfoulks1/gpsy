@@ -5,16 +5,9 @@ SCREEN="/usr/bin/screen"
 SCREENDIR="/home/$USER/.screen"
 
 function scr () {
-	PASS_SET=`grep -q password $SCREENDIR/secure; echo $?`
-	if [[ $PASS_SET -eq 0 ]]; then
-		DEFSEC=Y
-	else
-		DEFSEC=N
-	fi
-	
 	file=$1
 	name=$USER"_"$file
-	case $1 in
+	case $file in
 		secure)
 			$SCREEN -S $name -c $SCREENDIR/$file
 			;;
@@ -84,15 +77,14 @@ function scr () {
 
 function _addscr () {
 	name=$1
-	if [ -z $name ]; then echo "No configuration supplied" && exit 1; fi
+	if [ -z $name ]; then echo "No configuration supplied"; fi
 
 	file=$SCREENDIR/$name
 	if [ -e $file ]; then
 		newstring="\\\t\t$name\)\n\t\t\t\$SCREEN \-S \$name \-c \$SCREENDIR\/\$file\n\t\t\t;;"
-		sed -i "24i $newstring" $SCREENDIR/scr_function.sh
+		sed -i "20i $newstring" $SCREENDIR/scr_function.sh
 	else
 		echo "Supplied configuration not found"
-		exit 1
 	fi
 
 	source ~/.bashrc
@@ -102,11 +94,10 @@ function _delscr () {
 	name=$1
 	if [ -z $1 ]; then echo "No configuration supplied" && exit 1; fi
 	var=$(_contains $1)
-	if ["$var" != "0" ]; then
-	       sed -i '/$1/+2d'	$SCREENDIR/scr_function.sh
+	if [[ "$var" != "0" ]]; then
+		sed -i "/$name/,+2d" $SCREENDIR/scr_function.sh
 	else
 		echo "Cannot remove the configuration option"
-		exit 1
 	fi
 }
 
