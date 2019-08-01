@@ -3,7 +3,7 @@ vbell off
 ## Password Protected Screen configuration
 ##
 # Uncomment the following line and use super + F11 OR ctrl+a; ctrl+] to paste from the buffer
-# password 
+password YJFCaUIJPRO5Q 
 #
 ## Tab Management
 ##
@@ -22,46 +22,47 @@ bindkey -k k4 kill
 ##
 ## Manage Screen logging
 ##
-## Start logging to file - F5
+## Toggle logging to file - F5
 bindkey -k k5 log
 
-## Dump current to file - F6
+## Dump current screen display to file - F6
 bindkey -k k6 hardcopy
 
 ##
 ## Screen splitting controls
 ##
 ## Split screen - F7
-bindkey -k k7 split
+bindkey [18~ split
 
-## Previous split focus - Home
-bindkey -k kh focus next
+## Unsplit screen - Ctrl + F7
+bindkey [18;5~ only
 
-## Next split focus - End
-bindkey -k kH focus prev
+## Previous split focus - ctrl + up
+bindkey [1;5A focus up
 
-## Unsplit screen - F8
-bindkey -k k8 only
+## Next split focus - ctrl + dn
+bindkey [1;5B focus prev 
 
+##
 ## Scroll back + Copy and Paste
-## scrollback set to: 10000 lines
+## - scrollback set to: 10000 lines
 ##
 defscrollback 10000
 ## Enter Copy / Scrollback mode - F9
 ##    - Use space to start / end selection
 bindkey -k k9 copy
 
-## Paste copy buffer - F10
-bindkey -k k paste .
+## Paste copy buffer - ctrl + F10
+bindkey [21;5~ paste .
 
 ##
 ## Disconnecting and Exiting
 ##
-## Detach from the current session - F11
-bindkey -k F1 detach
+## Detach from the current session - F12
+bindkey [24~ detach
 
-# Close tabs and quit Screen - F12
-bindkey -k F2 quit
+# Close tabs and quit Screen - Ctrl + F12
+bindkey [24;5~ quit
 
 # Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
