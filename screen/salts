@@ -8,61 +8,61 @@ vbell off
 ## Tab Management
 ##
 ## Key bindings are processed with Ctrl + a + $
-## New Tab - n
-bindkey -k n screen
+## New Tab - Ctrl + n
+bindkey ^n screen
 
-## Previous Tab - q
-bindkey -k q prev
+## Previous Tab - Ctrl + q
+bindkey ^a prev
 
-## Next Tab - e
-bindkey -k e next
+## Next Tab - Ctrl + e
+bindkey ^z next
 
-## Kill Current Tab - d
-bindkey -k d kill
+## Kill Current Tab - Ctrl + d
+bindkey ^d kill
 
 ##
 ## Manage Screen logging
 ##
-## Toggle logging to screen.log - l
-bindkey -k l log
+## Toggle logging to screen.log - Ctrl + l
+bindkey ^l log
 
-## Dump current to file - h
-bindkey -k h hardcopy
+## Dump current to file - Ctrl + h
+bindkey ^h hardcopy
 
 ##
 ## Screen splitting controls
 ##
-## Split screen - s
-bindkey -k  split
+## Split screen - Ctrl + s
+bindkey ^s split
 
-## Previous split focus - Home
-bindkey -k u focus next
+## Previous split focus - Ctrl + u
+bindkey ^u focus next
 
-## Next split focus - End
-bindkey -k j focus prev
+## Next split focus - Ctrl + j
+bindkey ^j focus prev
 
-## Unsplit screen - F8
-bindkey -k o only
+## Unsplit screen - Ctrl + o
+bindkey ^o only
 
 ## Scroll back + Copy and Paste
-## scrollback set to: 10000 lines
+## - scrollback set to: 10000 lines
 ##
 defscrollback 10000
-## Enter Copy / Scrollback mode - F9
+## Enter Copy / Scrollback mode - Ctrl + c
 ##    - Use space to start / end selection
-bindkey -k c copy
+bindkey ^c copy
 
-## Paste copy buffer - F10
-bindkey -k p paste .
+## Paste copy buffer - Ctrl + p
+bindkey ^p paste .
 
 ##
 ## Disconnecting and Exiting
 ##
-## Detach from the current session - F11
-bindkey -k x detach
+## Detach from the current session - Ctrl + 
+bindkey ^r detach
 
-# Close tabs and quit Screen - F12
-bindkey -k q quit
+# Close tabs and quit Screen - Ctrl + t
+bindkey ^t quit
 
 # Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock

@@ -17,6 +17,9 @@ function scr () {
 		extra)
 			$SCREEN -S $name -c $SCREENDIR/$file
 			;;
+		salts)
+			$SCREEN -S $name -c $SCREENDIR/$file
+			;;
 		nopass)
 			$SCREEN -S $name -c $SCREENDIR/$file
 			;;
@@ -66,8 +69,10 @@ function scr () {
 			$SCREEN -x $2
 			;;
 		*)
-			if [ -e $SCREENDIR/default ]; then
-				$SCREEN -S $USER"_default" -c $SCREENDIR/default
+			if [ -z "$1" ]; then
+				if [ -e $SCREENDIR/default ]; then
+					$SCREEN -S $USER"_default" -c $SCREENDIR/default
+				fi
 			else
 				$SCREEN $@
 			fi
