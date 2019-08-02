@@ -3,12 +3,15 @@ vbell off
 ## Password Protected Screen configuration
 ##
 # Uncomment the following line and use super + F11 OR ctrl+a; ctrl+] to paste from the buffer
-password YJFCaUIJPRO5Q 
+# password
 #
 ## Tab Management
 ##
 ## New Tab - F1
 bindkey -k k1 screen
+
+## Rename Tab - Ctrl + F1
+bindkey [1;5P title
 
 ## Previous Tab - F2
 bindkey -k k2 prev
@@ -31,11 +34,14 @@ bindkey -k k6 hardcopy
 ##
 ## Screen splitting controls
 ##
-## Split screen - F7
+## Split screen (horizontal) - F7
 bindkey [18~ split
 
-## Unsplit screen - Ctrl + F7
-bindkey [18;5~ only
+## split screen (vertical) - Ctrl F7
+bindkey [18;5~ split -v
+
+## Unsplit screen - F8
+bindkey [19~ only
 
 ## Previous split focus - ctrl + up
 bindkey [1;5A focus up
@@ -48,21 +54,21 @@ bindkey [1;5B focus prev
 ## - scrollback set to: 10000 lines
 ##
 defscrollback 10000
-## Enter Copy / Scrollback mode - F9
+## toggle Copy / Scrollback mode - F9
 ##    - Use space to start / end selection
 bindkey -k k9 copy
 
-## Paste copy buffer - ctrl + F10
-bindkey [21;5~ paste .
+## Paste copy buffer - ctrl + F9
+bindkey [20;5~ paste .
 
 ##
 ## Disconnecting and Exiting
 ##
 ## Detach from the current session - F12
-bindkey [24~ detach
+bindkey [24~ quit
 
 # Close tabs and quit Screen - Ctrl + F12
-bindkey [24;5~ quit
+bindkey [24;5~ detach
 
 # Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock

@@ -21,12 +21,6 @@ bindkey -k k5 log
 ## Dump current to file - F6
 bindkey -k k6 hardcopy
 
-## Split screen - F7
-bindkey -k k7 split
-
-## Unsplit screen - F8
-bindkey -k k8 only
-
 ## Enter Copy / Scrollback mode - F9
 ##    - Use space to start / end selection
 bindkey -k k9 copy
