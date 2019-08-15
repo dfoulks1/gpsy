@@ -1,6 +1,6 @@
-# Gnu Screen Manager (wrapper)
+# Screen Manager (wrapper)
 
-the GNU Screen Manager is a wrapper that manages multiple .screenrc files.
+Screen Manager is a wrapper that manages multiple gnu screen .screenrc files.
 
 ## Setting Up
 run the setup.sh script included in the root of the repository
