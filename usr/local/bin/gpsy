@@ -2,7 +2,7 @@
 
 USER=`whoami`
 SCREEN="/usr/bin/screen"
-SCREENDIR="/usr/local/scr-profiles"
+SCREENDIR="/usr/local/gpsy"
 SCRIPTPATH="/usr/local/bin/gpsy"
 
 function main () {
