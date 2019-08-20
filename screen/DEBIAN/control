@@ -1,0 +1,10 @@
+Package: gpsy
+Version: 1.0-1
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: screen (>= 4.6.2)
+Maintainer: Drew Foulks
+Description: Gnu screen Profile SYstem (GPSY)
+ Management system for GNU Screen profiles
+ Comes prepackaged with several SCREENRC profiles
