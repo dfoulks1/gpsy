@@ -58,7 +58,7 @@ bindkey ^p paste .
 ##
 ## Disconnecting and Exiting
 ##
-## Detach from the current session - Ctrl + 
+## Detach from the current session - Ctrl + r
 bindkey ^r detach
 
 # Close tabs and quit Screen - Ctrl + t

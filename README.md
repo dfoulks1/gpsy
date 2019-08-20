@@ -1,33 +1,65 @@
-# Screen Manager (wrapper)
+# Gnu screen Profile SYstem
 
-Screen Manager is a wrapper that manages multiple gnu screen .screenrc files.
+Gnu screen Profile Sysetem or gpsy is a wrapper for GNU Screen that comes prepackaged with several screenrc configurations (profiles) ready to go.
 
 ## Setting Up
-run the setup.sh script included in the root of the repository
-'scr' should now be ready to use
+Install the .deb file. This should place the scr script in /usr/local/bin/ and create a populated /usr/local/scr-profiles directory.
+
+From here on out 'scr' should now be ready to use
 
 ## Usage Notes
 
 ### Documentation
+#### Print General Help:
+	gpsy help
 
-run 'scr help' for information
+#### Print profile specific documentation:
+	gpsy help <profile>
 
-### Screenrc Management
+#### Add a new screen config:
+	gpsy add <profile>
 
-any valid screenrc file places in the ~/.screen directory may be used by scr
+	Caveats:
+		- gpsy does not recognize profile configurations outside of the /usr/local/scr-profiles directory
+		- gpsy does not support the addition of screenrc files symbolically linked to the /usr/local/scr-profiles directory.
 
-#### Adding new configurations:
-- ensure that the VALID screenrc file has a unique, simple name. this will be used as its tag
-- run scr add <newfile>
 
-the new screenrc should now be available for use
+#### Removing a screen config:
+	gpsy del <profile>
 
-#### Removing old configurations:
-- run scr del <oldfile>
+	NOTE:
+		- gpsy will unregister the configuration, making it inaccessible, but will NOT delete the file.
 
-the old screenrc file should no longer be known to scr
+#### Listing Available screen configurations:
+	gpsy list
 
-#### Securing a configuration
+	NOTE:
+
+		- This will only list the available profile configurations.
+
+#### Setting and Unsetting the default screen configuration:
+
+	gpsy set-default <profile>
+
+		NOTE: This will enable a particular config to be invoked with no option.
+
+	gpsy unset-default
+
+
+#### Cleaning up old screen sessions:
+
+	gpsy clean
+
+#### Listing currently available sessions:
+
+	gpsy show
+
+#### Joining an available session:
+
+	gpsy join <session-id>
+
+
+### Password Protecting a screen configuration
 This leverages the GNU screen password command
 to invoke: ctrl + A, :password
 
@@ -38,3 +70,5 @@ Open the screenrc file you wish to secure and add the following
 password 
 
 on the same line as password ctrl + A, ctrl + ]
+
+
