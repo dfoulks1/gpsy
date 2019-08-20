@@ -3,13 +3,21 @@
 Gnu screen Profile Sysetem or gpsy is a wrapper for GNU Screen that comes prepackaged with several screenrc configurations (profiles) ready to go.
 
 ## Setting Up
-Install the .deb file. This should place the scr script in /usr/local/bin/ and create a populated /usr/local/scr-profiles directory.
 
-From here on out 'scr' should now be ready to use
+Use gpsy-conf.sh script to either 'install' or 'uninstall' gpsy.
+
+### Install Locations
+
+Default install location: 		/usr/local/bin/gpsy
+Default screenrc profile location: 	/usr/local/gpsy
+
+gpsy-conf.sh install will also place the file 'rc' into ~/.ssh/ if it is not already present. this will allow gpsy to forward your ssh-agent through to
+any screen session started. 
 
 ## Usage Notes
 
 ### Documentation
+
 #### Print General Help:
 	gpsy help
 
@@ -22,7 +30,6 @@ From here on out 'scr' should now be ready to use
 	Caveats:
 		- gpsy does not recognize profile configurations outside of the /usr/local/scr-profiles directory
 		- gpsy does not support the addition of screenrc files symbolically linked to the /usr/local/scr-profiles directory.
-
 
 #### Removing a screen config:
 	gpsy del <profile>
