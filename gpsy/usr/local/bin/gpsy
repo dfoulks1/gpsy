@@ -3,7 +3,7 @@
 USER=`whoami`
 SCREEN="/usr/bin/screen"
 SCREENDIR="/usr/local/scr-profiles"
-SCRIPTPATH="/usr/local/bin/scr"
+SCRIPTPATH="/usr/local/bin/gpsy"
 
 function main () {
 	file=$1
