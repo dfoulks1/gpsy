@@ -12,12 +12,6 @@ function main () {
 		secure)
 			eval '$SCREEN -S $name -c $SCREENDIR/$file'
 			;;
-		sftp)
-			eval '$SCREEN -S $name -c $SCREENDIR/$file'
-			;;
-		extra)
-			eval '$SCREEN -S $name -c $SCREENDIR/$file'
-			;;
 		salts)
 			eval '$SCREEN -S $name -c $SCREENDIR/$file'
 			;;

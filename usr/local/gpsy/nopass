@@ -1,10 +1,14 @@
 startup_message off
 vbell off
-defscrollback 10000
-## No Password Screen configuration
+## Basic Screen configuration
+##
+## Tab Management
 ##
 ## New Tab - F1
 bindkey -k k1 screen
+
+## Rename Tab - Ctrl + F1
+bindkey [1;5P title
 
 ## Previous Tab - F2
 bindkey -k k2 prev
@@ -15,34 +19,65 @@ bindkey -k k3 next
 ## Kill Current Tab - F4
 bindkey -k k4 kill
 
-## Start logging to file - F5
+##
+## Manage Screen logging
+##
+## Toggle logging to file - F5
 bindkey -k k5 log
 
-## Dump current to file - F6
+## Dump current screen display to file - F6
 bindkey -k k6 hardcopy
 
-## Enter Copy / Scrollback mode - F9
+##
+## Screen splitting controls
+##
+## Split screen (horizontal) - F7
+bindkey [18~ split
+
+## split screen (vertical) - Ctrl + F7
+bindkey [18;5~ split -v
+
+## Unsplit screen - F8
+bindkey [19~ only
+
+## Previous split focus - Ctrl + up
+bindkey [1;5A focus up
+
+## Next split focus - Ctrl + dn
+bindkey [1;5B focus prev 
+
+##
+## Scroll back + Copy and Paste
+## - scrollback set to: 10000 lines
+##
+defscrollback 10000
+## toggle Copy / Scrollback mode - F9
 ##    - Use space to start / end selection
 bindkey -k k9 copy
 
-## Detach from this screen session - F10
-bindkey -k k detach
+## Paste copy buffer - Ctrl + F9
+bindkey [20;5~ paste .
 
-## Paste - F11
-bindkey -k F1 paste .
+##
+## Disconnecting and Exiting
+##
+## Detach from the current session - F12
+bindkey [24~ detach
 
-## Quit Screen - F12
-bindkey -k F2 quit
+## Close tabs and quit Screen - Ctrl + F12
+bindkey [24;5~ quit
 
-## Allow Auth Agent forwarding
+# Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
+# Hardstatus is always last line
 hardstatus	alwayslastline
 
-hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KR} nopass %{KW}|%C%A %D %M %Y '
+# Friendly Menu bar
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KR} NO PASSWORD %{KW}|%C%A %D %M %Y'
 
-## Hide tabs: ctrl-a + f
+# Hide tabs: ctrl-a + f
 bind f eval "hardstatus ignore"
 
-## Show tabs: ctrl-a + F
+# Show tabs: ctrl-a + F
 bind F eval "hardstatus alwayslastline"
