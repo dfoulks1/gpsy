@@ -1,4 +1,4 @@
-# Gnu screen Profile SYstem
+# Gnu screen Profile SYstem (gpsy)
 
 Gnu screen Profile Sysetem or gpsy is a wrapper for GNU Screen that comes prepackaged with several screenrc configurations (profiles) ready to go.
 
