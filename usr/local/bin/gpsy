@@ -5,6 +5,13 @@ SCREEN="/usr/bin/screen"
 SCREENDIR="/usr/local/gpsy"
 SCRIPTPATH="/usr/local/bin/gpsy"
 
+### Colors ###
+RED="\e[31m"
+CYAN="\e[36m"
+GREEN="\e[1;92m"
+YELLOW="\e[93m"
+RESET="\e[0m"
+
 function main () {
 	file=$1
 	name=$USER"_"$file
@@ -26,7 +33,7 @@ function main () {
 			;;
 		help)
 			if [ $2 ]; then
-				grep "^##" $SCREENDIR/$2 | sed -e 's/^##/#/'
+				grep "^##" $SCREENDIR/$2 | sed -e 's/^##//'
 			else
 				printhelp
 			fi
