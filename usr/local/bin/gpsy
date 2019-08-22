@@ -6,11 +6,11 @@ SCREENDIR="/usr/local/gpsy"
 SCRIPTPATH="/usr/local/bin/gpsy"
 
 ### Colors ###
-RED="\e[31m"
-CYAN="\e[36m"
-GREEN="\e[1;92m"
-YELLOW="\e[93m"
-RESET="\e[0m"
+RED='\033[31m'
+CYAN='\033[36m'
+GREEN='\033[1;92m'
+YELLOW='\033[93m'
+RESET='\033[0m'
 
 function main () {
 	file=$1
@@ -66,7 +66,7 @@ function main () {
 			;;
 		show)
 			echo "Available sessions:"
-			$SCREEN -ls | egrep -i 'detached|attached' | awk -F. '{print $1" -- "$2}'
+			$SCREEN -ls | egrep -i 'detached|attached' | awk -F. '{print "\033[36m"$1"\033[0m -- "$2}'
 			;;
 		join)
 			$SCREEN -x $2
