@@ -8,7 +8,7 @@ vbell off
 # 3) After the password generator accepts your password it will be copied to the clipboard
 # 4) To paste this password you can use the ctrl + F9 shortcut key. 
 # # # Append password hash and uncomment the following line for password protection # # #
-password NUNa5caWpQSCI
+#password
 
 ## Tab Management
 ##
@@ -83,7 +83,7 @@ setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 hardstatus	alwayslastline
 
 # Friendly Menu bar
-hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= | %{KG} %H %{Kw}|%{KY} PASSWORD PROTECTED %{KW}|%C%A %D %M %Y'
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= |%{KG} %H %{Kw}|%{KY} Secure %{KW}|%C%A %D %M %Y'
 
 ##
 ## Tab Bar
