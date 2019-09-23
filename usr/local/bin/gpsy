@@ -16,13 +16,20 @@ function main () {
 	file=$1
 	name=$USER"_"$file
 	case $file in
+		custom)
+			#boing
+			eval '/usr/bin/screen -S $name -c $SCREENDIR/$file'
+			;;
 		secure)
+			#boing
 			eval '$SCREEN -S $name -c $SCREENDIR/$file'
 			;;
 		salts)
+			#boing
 			eval '$SCREEN -S $name -c $SCREENDIR/$file'
 			;;
 		nopass)
+			#boing
 			eval '$SCREEN -S $name -c $SCREENDIR/$file'
 			;;
 		add)
@@ -89,8 +96,8 @@ function _addscr () {
 
 	file=$SCREENDIR/$name
 	if [ -e $file ]; then
-		newstring="\\\t\t$name\)\n\t\t\t\eval '$SCREEN \-S \$name \-c \$SCREENDIR\/\$file'\n\t\t\t;;"
-		sed -i "20i $newstring" $SCRIPTPATH
+		newstring="\\\t\t$name\)\n\t\t\t#boing\n\t\t\t\eval '$SCREEN \-S \$name \-c \$SCREENDIR\/\$file'\n\t\t\t;;"
+		sed -i "19i $newstring" $SCRIPTPATH
 	else
 		echo "Supplied configuration not found"
 	fi
@@ -118,7 +125,8 @@ function _contains () {
 function _listall () {
 	echo "available screens:"
 	default=`ls -al $SCREENDIR | grep default | awk -F/ '{print $NF}' | sed -e 's/\n//'`
-	for x in `grep -B1 '\$SCREEN -S \$name -c \$SCREENDIR/\$file' $SCRIPTPATH | grep \) | sed -e "s/)//" -e "s/^\s\+//"`; do
+#	for x in `grep -B1 '#boing' $SCRIPTPATH | grep \) | sed -e "s/)//" -e "s/^\s\+//"`; do
+	for x in `grep -B1 '#boing' $SCRIPTPATH | grep -v '#boing' | grep "\w)" | sed -e 's/^\s\+//' -e 's/)//'`; do
 		if [[ "$x" == "$default" ]]; then
 			echo "$x -- default"
 		else

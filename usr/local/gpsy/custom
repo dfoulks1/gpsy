@@ -1,0 +1,101 @@
+startup_message off
+vbell off
+altscreen on
+termcap xterm hs
+## Password Protected Screen configuration
+##
+# To configure a password for this session:
+# 1) Ctrl + a, :password
+# 2) When prompted, type in your desired password
+# 3) After the password generator accepts your password it will be copied to the clipboard
+# 4) To paste this password you can use the ctrl + F9 shortcut key. 
+# # # Append password hash and uncomment the following line for password protection # # #
+#password
+
+## Tab Management
+##
+## 	New Tab - F1
+bindkey -k k1 screen
+
+## 	Previous Tab - F2
+bindkey -k k2 prev
+
+## 	Next Tab - F3
+bindkey -k k3 next
+
+## 	Kill Current Tab - F4
+bindkey -k k4 kill
+
+## 	Rename Tab - Ctrl + F1
+bindkey [1;5P title
+
+##
+## Manage Screen logging
+##
+## 	Toggle logging to file - F5
+bindkey -k k5 log
+##	Set logfile name - Ctrl - F5
+bindkey -k [15;5~ logfile
+
+## 	Dump current screen display to file - F6
+bindkey -k k6 hardcopy
+
+##
+## Screen splitting controls
+##
+## 	Split screen (horizontal) - F7
+bindkey [18~ split
+
+## 	Split screen (vertical) - Ctrl + F7
+bindkey [18;5~ split -v
+
+##	Unsplit screen - F8 	(focus on current)
+bindkey [19~ only
+
+## 	Focus previous - Ctrl + up
+bindkey [1;5A focus up
+
+## 	Focus next - Ctrl + dn
+bindkey [1;5B focus prev 
+
+##
+## Scroll back + Copy and Paste	(scrollback set to: 1000000 lines)
+##
+defscrollback 1000000
+## 	toggle Copy / Scrollback mode - F9
+##     	start / end selection - <Space>
+bindkey -k k9 copy
+
+## 	Paste copy buffer - Ctrl + F9
+bindkey [20;5~ paste .
+
+##
+## Disconnecting and Exiting
+##
+## 	Detach from the current session - F12
+bindkey [24~ detach
+
+## 	Close tabs and quit Screen - Ctrl + F12
+bindkey [24;5~ quit
+
+# Allow SSH Agent forwarding
+setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+
+# Hardstatus is always last line
+hardstatus	alwayslastline
+
+# Friendly Menu bar
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= |%{KG} %H %{Kw}|%{KY} Secure %{KW}|%C%A %D %M %Y'
+
+##
+## Tab Bar
+## 	Hide tabs: ctrl-a + f
+bind f eval "hardstatus ignore"
+
+## 	Show tabs: ctrl-a + F
+bind F eval "hardstatus alwayslastline"
+
+## Default Tabs
+screen -t IRC
+
+
