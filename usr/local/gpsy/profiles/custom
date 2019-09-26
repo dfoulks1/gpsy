@@ -33,8 +33,7 @@ bindkey [1;5P title
 ##
 ## 	Toggle logging to file - F5
 bindkey -k k5 log
-##	Set logfile name - Ctrl - F5
-bindkey -k [15;5~ logfile
+logfile /usr/local/gpsy/logs/screenlog-%Y%m%d-%c:%s
 
 ## 	Dump current screen display to file - F6
 bindkey -k k6 hardcopy
@@ -87,7 +86,7 @@ setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 hardstatus	alwayslastline
 
 # Friendly Menu bar
-hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= |%{KG} %H %{Kw}|%{KY} Secure %{KW}|%C%A %D %M %Y'
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= |%{KG} %H %{Kw}|%{KY} custom %{KW}|%C%A %D %M %Y'
 termcapinfo xterm*|Eterm|mlterm "hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007"
 ##
 ## Tab Bar
@@ -98,6 +97,11 @@ bind f eval "hardstatus ignore"
 bind F eval "hardstatus alwayslastline"
 
 ## Default Tabs
+## 0 - IRC # launches irssi
+## 1 - OK
+## 2 - bash
+## 3 - bash
+
 screen -t IRC irssi
 screen -t OK
 screen -t bash
