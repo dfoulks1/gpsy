@@ -8,14 +8,15 @@ vbell off
 ## Tab Management
 ##
 ## Key bindings are processed with Ctrl + a + $
+
 ## New Tab - Ctrl + n
 bindkey ^n screen
 
 ## Previous Tab - Ctrl + q
-bindkey ^a prev
+bindkey ^f prev
 
 ## Next Tab - Ctrl + e
-bindkey ^z next
+bindkey ^j next
 
 ## Kill Current Tab - Ctrl + d
 bindkey ^d kill
@@ -38,8 +39,8 @@ bindkey ^s split
 ## Previous split focus - Ctrl + u
 bindkey ^u focus next
 
-## Next split focus - Ctrl + j
-bindkey ^j focus prev
+## Next split focus - Ctrl + r
+bindkey ^r focus prev
 
 ## Unsplit screen - Ctrl + o
 bindkey ^o only
@@ -58,11 +59,11 @@ bindkey ^p paste .
 ##
 ## Disconnecting and Exiting
 ##
-## Detach from the current session - Ctrl + r
-bindkey ^r detach
+## Detach from the current session - Ctrl + q
+bindkey ^q detach
 
-# Close tabs and quit Screen - Ctrl + t
-bindkey ^t quit
+# Close tabs and quit Screen - Ctrl + Q
+bindkey ^Q quit
 
 # Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock

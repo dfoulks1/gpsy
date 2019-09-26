@@ -2,7 +2,7 @@
 
 USER=`whoami`
 SCREEN="/usr/bin/screen"
-SCREENDIR="/usr/local/gpsy"
+SCREENDIR="/usr/local/gpsy/profiles"
 SCRIPTPATH="/usr/local/bin/gpsy"
 
 ### Colors ###

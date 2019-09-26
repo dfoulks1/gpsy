@@ -1,7 +1,6 @@
 startup_message off
 vbell off
 altscreen on
-termcap xterm hs
 ## Password Protected Screen configuration
 ##
 # To configure a password for this session:
@@ -78,15 +77,18 @@ bindkey [24~ detach
 ## 	Close tabs and quit Screen - Ctrl + F12
 bindkey [24;5~ quit
 
+
 # Allow SSH Agent forwarding
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
 # Hardstatus is always last line
+#bindkey  backtick 1 0 1 ok
+#caption		always '%1'
 hardstatus	alwayslastline
 
 # Friendly Menu bar
 hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= |%{KG} %H %{Kw}|%{KY} Secure %{KW}|%C%A %D %M %Y'
-
+termcapinfo xterm*|Eterm|mlterm "hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007"
 ##
 ## Tab Bar
 ## 	Hide tabs: ctrl-a + f
@@ -96,6 +98,8 @@ bind f eval "hardstatus ignore"
 bind F eval "hardstatus alwayslastline"
 
 ## Default Tabs
-screen -t IRC
-
+screen -t IRC irssi
+screen -t OK
+screen -t bash
+screen -t bash
 
