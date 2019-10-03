@@ -76,7 +76,15 @@ function main () {
 			$SCREEN -ls | egrep -i 'detached|attached' | awk -F. '{print "\033[36m"$1"\033[0m -- "$2}'
 			;;
 		join)
-			$SCREEN -x $2
+			if [ ! $2 ]; then
+				echo "Available sessions:"
+				$SCREEN -ls | egrep -i 'detached|attached' | awk -F. '{print "\033[36m"$1"\033[0m -- "$2}'
+				echo -ne "\nSession ID: "
+				read session_id
+			else
+				session_id=$2
+			fi
+			$SCREEN -x $session_id
 			;;
 		*)
 			if [ -z "$1" ]; then
