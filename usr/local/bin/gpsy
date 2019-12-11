@@ -62,8 +62,8 @@ function main () {
 				unlink $SCREENDIR/default
 			fi
 			;;
-		list)
-			_listall
+		profiles)
+			_listall_profiles
 			;;
 		clean)
 			_killscr
@@ -71,9 +71,14 @@ function main () {
 		kill)
 			_killscr $2
 			;;
-		show)
-			echo "Available sessions:"
-			$SCREEN -ls | egrep -i 'detached|attached' | awk -F. '{print "\033[36m"$1"\033[0m -- "$2}'
+		list)
+			availscr=`$SCREEN -ls | egrep -i 'detached|attached' | awk -F. '{print "\033[36m"$1"\033[0m -- "$2}'`
+			if [[ "$availscr" != "" ]]; then
+				echo "Available sessions:"
+				echo -e $availscr
+			else
+				echo "There are no available sessions:"
+			fi
 			;;
 		join)
 			if [ ! $2 ]; then
@@ -130,7 +135,7 @@ function _contains () {
 	return $var
 }
 
-function _listall () {
+function _listall_profiles () {
 	echo "available screens:"
 	default=`ls -al $SCREENDIR | grep default | awk -F/ '{print $NF}' | sed -e 's/\n//'`
 #	for x in `grep -B1 '#boing' $SCRIPTPATH | grep \) | sed -e "s/)//" -e "s/^\s\+//"`; do
@@ -185,8 +190,8 @@ function printhelp() {
 			NOTE:
 				- gpsy will unregister the configuration, making it inaccessible, but will NOT delete the file.
 
-		Listing Available screen configurations:
-			gpsy list
+		Listing Available screen profiles:
+			gpsy profiles
 
 			NOTE:
 
@@ -207,7 +212,7 @@ function printhelp() {
 			
 		Listing currently available sessions:
 			
-			gpsy show
+			gpsy list
 
 		Joining an available session:
 		
@@ -218,20 +223,3 @@ echo "$message"
 }
 
 main $@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
